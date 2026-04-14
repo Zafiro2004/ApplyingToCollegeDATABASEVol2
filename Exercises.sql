@@ -87,7 +87,7 @@ order by STATE,NAME;
 SELECT NAME FROM COLLEGES
 WHERE ENROLLMENT = (SELECT MAX(ENROLLMENT) FROM COLLEGES);
 
--- 28 List the student (or students) with highest mark (using EXISTS).
+-- 28 List the student (or students) with the highest mark (using EXISTS).
 SELECT ID, NAME, SURNAME FROM STUDENTS s1
 WHERE NOT EXISTS (
     SELECT 1 FROM STUDENTS s2 WHERE s2.MARK > s1.MARK
@@ -100,7 +100,7 @@ where exists(select maxmark
                   from STUDENTS)
              where maxmark=s1.MARK);
 
--- 29 List the student with highest mark (using "where mark >= all")
+-- 29 List the student with the highest mark (using "where mark >= all")
 SELECT ID, NAME, SURNAME FROM STUDENTS
 WHERE MARK >= ALL (SELECT MARK FROM STUDENTS);
 
@@ -127,12 +127,12 @@ SELECT s.SURNAME, s.NAME, a.COLLAGE, a.MAJOR, a.DECISION
 FROM STUDENTS s JOIN APPLIES a ON s.ID = a.SID
 ORDER BY s.SURNAME, s.NAME;
 
--- 34 List the pairs of students with same mark (ordered by its marks descending and
+-- 34 List the pairs of students with the same mark (ordered by its marks descending and
 -- surnames/names ascending).
 SELECT s1.NAME || s1.SURNAME, s2.NAME || s2.SURNAME, s1.MARK
 FROM STUDENTS s1 JOIN STUDENTS s2
                       ON s1.MARK = s2.MARK AND s1.ID < s2.ID
-ORDER BY s1.MARK DESC, s1.SURNAME ASC, s1.NAME ASC, s2.SURNAME ASC, s2.NAME ASC;
+ORDER BY s1.MARK DESC, s1.SURNAME, s1.NAME, s2.SURNAME, s2.NAME;
 
 -- 35 List a list of college names and student names together ordered by name.
 SELECT NAME FROM COLLEGES
