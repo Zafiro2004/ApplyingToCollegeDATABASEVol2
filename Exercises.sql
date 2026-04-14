@@ -120,7 +120,7 @@ WHERE NOT ENROLLMENT <= ANY (
 
 -- 32 List the students not from the smallest high school.
 SELECT ID, NAME, SURNAME FROM STUDENTS
-WHERE SIZE_HIGH_SCHOOL > (SELECT MIN(SIZE_HIGH_SCHOOL) FROM STUDENTS);
+WHERE SIZE_HIGH_SCHOOL != (SELECT MIN(SIZE_HIGH_SCHOOL) FROM STUDENTS);
 
 -- 33 List the application information order by student surname and name.
 SELECT s.SURNAME, s.NAME, a.COLLAGE, a.MAJOR, a.DECISION
