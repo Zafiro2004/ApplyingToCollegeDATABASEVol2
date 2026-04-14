@@ -93,6 +93,13 @@ WHERE NOT EXISTS (
     SELECT 1 FROM STUDENTS s2 WHERE s2.MARK > s1.MARK
 );
 
+select *
+from STUDENTS s1
+where exists(select maxmark
+             from(select MAX(MARK) as maxmark
+                  from STUDENTS)
+             where maxmark=s1.MARK);
+
 -- 29 List the student with highest mark (using "where mark >= all")
 SELECT ID, NAME, SURNAME FROM STUDENTS
 WHERE MARK >= ALL (SELECT MARK FROM STUDENTS);
