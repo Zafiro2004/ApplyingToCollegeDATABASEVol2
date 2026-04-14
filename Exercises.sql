@@ -170,3 +170,13 @@ WHERE EXISTS (
 SELECT DISTINCT SID FROM APPLIES
 WHERE MAJOR = 'CS'
 AND NOT SID = ANY(SELECT SID FROM APPLIES WHERE MAJOR = 'EE');
+
+select distinct (SID)
+from APPLIES
+where SID= any((select SID
+                from APPLIES
+                where MAJOR='CS')
+            minus
+                (select SID
+                 from APPLIES
+                 where MAJOR='EE'));
